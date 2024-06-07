@@ -37,23 +37,30 @@ class Solution
     //Function to check if brackets are balanced or not.
     static boolean ispar(String x)
     {
-        char chars[] = x.toCharArray();
-        Stack<Character> stack=new Stack<>();
-       for (char ele : chars) {
-            if (ele == '[' || ele == '{' || ele == '(') {
-                stack.push(ele);
-            } else {
-                if (stack.empty()) {
-                    return false; // Unmatched closing bracket
-                }
-                
-                char top = stack.pop();
-                if ((top == '[' && ele != ']') || (top == '(' && ele != ')') || (top == '{' && ele != '}')) {
-                    return false; // Mismatched brackets
-                }
+         Stack<Character> sta= new Stack<>();
+        for(int i=0;i<x.length();i++)
+        {
+            if(x.charAt(i)=='(' || x.charAt(i)=='['||x.charAt(i)=='{')
+            {
+                sta.push(x.charAt(i));
             }
+            else
+            {
+                
+            if(sta.empty())
+            {
+                return false;
+            }
+        if((sta.peek()=='(' && x.charAt(i)==')') || (sta.peek()=='[' && x.charAt(i)==']')||(sta.peek()=='{' && x.charAt(i)=='}'))
+        {
+            sta.pop();
         }
+            else
+            {
+                return false;
+            }
+        }}
+        return sta.empty();
         
-        return stack.empty(); // Check if there are any unmatched opening brackets
     }
 }
