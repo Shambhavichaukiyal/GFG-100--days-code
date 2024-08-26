@@ -24,6 +24,8 @@ class GFG {
 // } Driver Code Ends
 
 
+
+
 class Solution {
     static int minJumps(int[] arr, int n) {
        
