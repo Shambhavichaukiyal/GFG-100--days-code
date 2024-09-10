@@ -26,24 +26,26 @@ class GFG {
 // } Driver Code Ends
 
 
+
+
 // User function Template for Java
 
 class Solve {
     int[] findTwoElement(int arr[]) {
   int n = arr.length;
         int[] result = new int[2];
-        long sum1 = 0;  // Sum of elements
-        long sum2 = 0;  // Sum of squares of elements
-        long sumN = (long) n * (n + 1) / 2;  // Theoretical sum of first n natural numbers
-        long sumN2 = (long) n * (n + 1) * (2 * n + 1) / 6;  // Theoretical sum of squares of first n natural numbers
+        long sum1 = 0; 
+        long sum2 = 0;  
+        long sumN = (long) n * (n + 1) / 2;  
+        long sumN2 = (long) n * (n + 1) * (2 * n + 1) / 6;
         
         for (int num : arr) {
             sum1 += num;
-            sum2 += (long) num * num;  // Use long to prevent overflow
+            sum2 += (long) num * num; 
         }
         
-        long sumDiff = sumN - sum1;  // Missing - Duplicate
-        long sumSquaresDiff = sumN2 - sum2;  // Missing^2 - Duplicate^2
+        long sumDiff = sumN - sum1;
+        long sumSquaresDiff = sumN2 - sum2;
         
         // Calculate the sum of missing and duplicate numbers
         long sumMissingAndDuplicate = sumSquaresDiff / sumDiff;
