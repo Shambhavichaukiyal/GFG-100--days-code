@@ -37,7 +37,7 @@ public class Main {
 
 class Solution {
     int getMinDiff(int[] arr, int k) {
-        Arrays.sort(arr);
+     Arrays.sort(arr);
         int ans=arr[arr.length-1]-arr[0];
         if(arr.length==1)
         {
