@@ -48,21 +48,21 @@ class MyStack {
     }
 
     public void push(int x) {
-        top++;
-        arr[top]=x;
+        if(top<arr.length-2)
+        {
+            top++;
+            arr[top]=x;
+        }
     }
 
     public int pop() {
-        if(top==-1)
+        if(top!=-1)
         {
-            return -1;
-        }
-        else
-        {
-            int z= arr[top];
+            int z=arr[top];
             arr[top]=-1;
             top--;
             return z;
         }
+        return -1;
     }
 }
