@@ -23,32 +23,32 @@ class GFG {
 
 class Solution {
     int lps(String str) {
-      int len=0;
-      int i=1;
-      int lis[]=new int[str.length()];
-      lis[0]=0;
-      while(i<str.length())
-      {
-          if(str.charAt(i)==str.charAt(len))
-          {
-              len++;
-              lis[i]=len;
-              i++;
-          }
-          else
-          {
-              if(len!=0)
-              {
-                  len=lis[len-1];
-                  
-              }
-              else
-              {
-                  lis[i]=0;
-                  i++;
-              }
-          }
-      }
-      return len;
+        int lis[]=new int[str.length()];
+        lis[0]=0;
+        int len=0;
+        int n=str.length();
+        int i=1;
+        while(i<n)
+        {
+            if(str.charAt(i)==str.charAt(len))
+            {
+                len++;
+                lis[i]=len;
+                i++;
+            }
+            else
+            {
+                if(len!=0)
+                {
+                    len=lis[len-1];
+                }
+                else
+                {
+                    lis[i]=0;
+                    i++;
+                }
+            }
+        }
+        return len;
     }
 }
