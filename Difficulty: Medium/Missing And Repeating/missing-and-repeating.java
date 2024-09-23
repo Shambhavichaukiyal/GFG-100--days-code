@@ -30,7 +30,7 @@ class GFG {
 
 class Solve {
     int[] findTwoElement(int arr[]) {
-        int a[] = new int[2];
+         int a[] = new int[2];
     int n = arr.length;
 
     
@@ -50,10 +50,10 @@ class Solve {
     long diffsq = sn1 - sn; 
 
     
-    long sumRepeatedMissing = diffsq / diff;  
+    long pos = diffsq / diff;  
 
-    long repeated = (diff + sumRepeatedMissing) / 2;  
-    long missing = sumRepeatedMissing - repeated;
+    long repeated = (diff + pos) / 2;  
+    long missing = pos - repeated;
 
     a[0] = (int) repeated;
     a[1] = (int) missing;
@@ -61,3 +61,4 @@ class Solve {
     return a;
 }
 }
+    
