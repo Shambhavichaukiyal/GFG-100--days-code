@@ -26,34 +26,38 @@ class GFG {
 // } Driver Code Ends
 
 
-
-
 // User function Template for Java
 
 class Solve {
     int[] findTwoElement(int arr[]) {
-  int n = arr.length;
-        int[] result = new int[2];
-        long sum1 = 0; 
-        long sum2 = 0;  
-        long sumN = (long) n * (n + 1) / 2;  
-        long sumN2 = (long) n * (n + 1) * (2 * n + 1) / 6;
-        
-        for (int num : arr) {
-            sum1 += num;
-            sum2 += (long) num * num; 
-        }
-        
-        long sumDiff = sumN - sum1;
-        long sumSquaresDiff = sumN2 - sum2;
-        
-        // Calculate the sum of missing and duplicate numbers
-        long sumMissingAndDuplicate = sumSquaresDiff / sumDiff;
-        
-        // Calculate the missing and duplicate numbers
-        result[1] = (int) ((sumDiff + sumMissingAndDuplicate) / 2);  // Missing
-        result[0] = (int) (result[1] - sumDiff);  // Duplicate
-        
-        return result;
+        int a[] = new int[2];
+    int n = arr.length;
+
+    
+    long s = (long) n * (n + 1) / 2; 
+    long sn = (long) n * (n + 1) * (2 * n + 1) / 6;  
+
+    long s1 = 0;
+    long sn1 = 0;
+
+    
+    for (int i = 0; i < n; i++) {
+        s1 += arr[i];
+        sn1 += (long) arr[i] * arr[i];
     }
+
+    long diff = s1 - s;  
+    long diffsq = sn1 - sn; 
+
+    
+    long sumRepeatedMissing = diffsq / diff;  
+
+    long repeated = (diff + sumRepeatedMissing) / 2;  
+    long missing = sumRepeatedMissing - repeated;
+
+    a[0] = (int) repeated;
+    a[1] = (int) missing;
+
+    return a;
+}
 }
