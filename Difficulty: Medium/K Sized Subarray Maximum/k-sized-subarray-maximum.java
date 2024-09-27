@@ -5,32 +5,30 @@ import java.io.*;
 import java.lang.*;
 import java.util.*;
 
-class Main {
-    public static void main(String args[]) {
+public class Main {
+    public static void main(String args[]) throws IOException {
         // taking input using class Scanner
-        Scanner sc = new Scanner(System.in);
-
-        // taking total count of testcases
-        int t = sc.nextInt();
+        BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
+        int t = Integer.parseInt(br.readLine());
 
         while (t-- > 0) {
             // taking total number of elements
-            int n = sc.nextInt();
+            int k = Integer.parseInt(br.readLine());
+            String line = br.readLine();
+            String[] tokens = line.split(" ");
 
-            // taking size of subArrays
-            int k = sc.nextInt();
+            // Create an ArrayList to store the integers
+            ArrayList<Integer> array = new ArrayList<>();
 
-            // Declaring and Intializing an array of size n
-            int arr[] = new int[n];
-
-            // adding all the elements to the array
-            for (int i = 0; i < n; i++) {
-                arr[i] = sc.nextInt();
+            // Parse the tokens into integers and add to the array
+            for (String token : tokens) {
+                array.add(Integer.parseInt(token));
             }
 
-            // Calling the method max_of_subarrays of class solve
-            // and storing the result in an ArrayList
-            ArrayList<Integer> res = new Solution().max_of_subarrays(arr, k);
+            int[] arr = new int[array.size()];
+            int idx = 0;
+            for (int i : array) arr[idx++] = i;
+            ArrayList<Integer> res = new Solution().max_of_subarrays(k, arr);
 
             // printing the elements of the ArrayList
             for (int i = 0; i < res.size(); i++) System.out.print(res.get(i) + " ");
@@ -45,28 +43,25 @@ class Main {
 
 class Solution {
     // Function to find maximum of each subarray of size k.
-    static ArrayList<Integer> max_of_subarrays(int arr[], int k) {
-        int n= arr.length;
-        ArrayList<Integer> a= new ArrayList<>();
+    public ArrayList<Integer> max_of_subarrays(int k, int arr[]) {
         Deque<Integer> dq= new LinkedList<>();
-        
-        for(int i=0;i<n;i++)
+        ArrayList<Integer> result= new ArrayList<>();
+        for(int i=0;i<arr.length;i++)
         {
-            while(!dq.isEmpty() && dq.peek()<i-k+1)
+            while(!dq.isEmpty() &&  dq.peek()<i-k+1)
             {
                 dq.poll();
             }
-           
-            while(!dq.isEmpty() && arr[dq.peekLast()]< arr[i])
+            while(!dq.isEmpty() && arr[dq.peekLast()]<arr[i])
             {
                 dq.pollLast();
             }
             dq.offer(i);
             if(i >= k - 1)
             {
-                a.add(arr[dq.peek()]);
+                result.add(arr[dq.peek()]);
             }
         }
-        return a;
+        return result;
     }
 }
