@@ -37,27 +37,24 @@ class GFG {
 class Solution {
     // Function to return a list containing the DFS traversal of the graph.
     public ArrayList<Integer> dfsOfGraph(int V, ArrayList<ArrayList<Integer>> adj) {
-        ArrayList<Integer> dfs = new ArrayList<>();
-        int vis[]=new int[V];
-        for(int i=0;i<V;i++)
-        {
-            vis[i]=-1;
-        }
+        ArrayList<Integer>  d= new ArrayList<>();
+        int vis[]= new int[V];
+       
+                dfs(V,adj,0,vis,d);
+            
         
-        dfs1(vis,adj,V,0,dfs);
-        return dfs;
+        return d;
     }
-    public static void dfs1(int vis[],ArrayList<ArrayList<Integer>> adj,int V,int node,ArrayList<Integer> dfs)
+    public void dfs(int V,ArrayList<ArrayList<Integer>> adj,int i,int vis[],ArrayList<Integer>  d)
     {
-        vis[node]=1;
-        dfs.add(node);
-        for(int a:adj.get(node))
+        vis[i]=1;
+        d.add(i);
+        for(int it:adj.get(i))
         {
-            if(vis[a]==-1)
+            if(vis[it]==0)
             {
-                dfs1(vis,adj,V,a,dfs);
+                dfs(V,adj,it,vis,d);
             }
         }
-        
     }
 }
