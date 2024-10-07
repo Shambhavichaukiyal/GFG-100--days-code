@@ -63,39 +63,41 @@ class Solution
     //Function to return list containing vertices in Topological order. 
     static int[] topoSort(int V, ArrayList<ArrayList<Integer>> adj) 
     {
-    int indegree[]= new int[V];
-    Queue<Integer> q = new LinkedList<>();
-    for(int i=0;i<V;i++)
-    {
-        for(int a:adj.get(i))
+        Queue<Integer> q= new LinkedList<>();
+        int indegree[]=new int[V];
+        for(int i=0;i<V;i++)
         {
-            indegree[a]++;
+           for(int it:adj.get(i))
+           {
+               indegree[it]++;
+           }
         }
-    }
-    for(int i=0;i<V;i++)
-    {
-        if(indegree[i]==0)
+        for(int i=0;i<V;i++)
         {
-            q.add(i);
-        }
-    }
-    ArrayList<Integer> topo= new ArrayList<>();
-    while(!q.isEmpty())
-    {
-        int node=q.poll();
-        topo.add(node);
-        for(int a:adj.get(node))
-        {
-            indegree[a]--;
-            if(indegree[a]==0)
+            if(indegree[i]==0)
             {
-                q.add(a);
+                q.add(i);
             }
         }
+        ArrayList<Integer> topo= new ArrayList<>();
+        while(!q.isEmpty())
+        {
+            int i=q.poll();
+            topo.add(i);
+            for(int it:adj.get(i))
+            {
+                indegree[it]--;
+                if(indegree[it]==0)
+                {
+                    q.add(it);
+                }
+            }
+        }
+        int result[]=new int[topo.size()];
+        for(int i=0;i<topo.size();i++)
+        {
+            result[i]=topo.get(i);
+        }
+        return result;
     }
-    int[] result = new int[topo.size()];
-for (int i = 0; i < topo.size(); i++) {
-    result[i] = topo.get(i); // Unboxing Integer to int
 }
-return result;
-}}
