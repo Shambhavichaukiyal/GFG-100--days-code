@@ -1,12 +1,12 @@
 //{ Driver Code Starts
 // Initial Template for Java
-import java.util.*;
-import java.lang.*;
 import java.io.*;
+import java.lang.*;
+import java.util.*;
+
 class GFG {
     public static void main(String[] args) throws IOException {
-        BufferedReader br =
-            new BufferedReader(new InputStreamReader(System.in));
+        BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
         int T = Integer.parseInt(br.readLine().trim());
         while (T-- > 0) {
             String[] s = br.readLine().trim().split(" ");
@@ -19,12 +19,11 @@ class GFG {
                 int u = Integer.parseInt(S[0]);
                 int v = Integer.parseInt(S[1]);
                 adj.get(u).add(v);
-                // adj.get(v).add(u);
+                adj.get(v).add(u); // Added this line to make the graph undirected
             }
             Solution obj = new Solution();
-            ArrayList<Integer> ans = obj.bfsOfGraph(V, adj);
-            for (int i = 0; i < ans.size(); i++)
-                System.out.print(ans.get(i) + " ");
+            ArrayList<Integer> ans = obj.bfsOfGraph(adj);
+            for (int i = 0; i < ans.size(); i++) System.out.print(ans.get(i) + " ");
             System.out.println();
         }
     }
@@ -33,31 +32,31 @@ class GFG {
 // } Driver Code Ends
 
 
+// User function Template for Java
 class Solution {
     // Function to return Breadth First Traversal of given graph.
-    public ArrayList<Integer> bfsOfGraph(int V, ArrayList<ArrayList<Integer>> adj) {
-        // Code here
-        ArrayList<Integer> b= new ArrayList<>();
-        int vis[]=new int[V];
+    public ArrayList<Integer> bfsOfGraph(ArrayList<ArrayList<Integer>> adj) {
+        ArrayList<Integer> bfs= new ArrayList<>();
         Queue<Integer> q= new LinkedList<>();
-        vis[0]=1;
-        q.add(0);
        
+        int vis[]=new int[adj.size()];
+         q.add(0);
+        bfs.add(0);
+        vis[0]=1;
         while(!q.isEmpty())
         {
-            int i=q.poll();
-           
-             b.add(i);
-             for(int it:adj.get(i))
-             {
-                 if(vis[it]==0)
-                 {
-                      vis[it]=1;
-                     q.add(it);
-                 }
-                 
-             }
+            int p=q.poll();
+            
+            for(int g:adj.get(p))
+            {
+                if(vis[g]==0)
+                {
+                    bfs.add(g);
+                    q.add(g);
+                    vis[g]=1;
+                }
+            }
         }
-        return b;
+        return bfs;
     }
 }
