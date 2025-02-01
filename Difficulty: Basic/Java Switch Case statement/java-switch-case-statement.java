@@ -21,7 +21,9 @@ class GFG{
                 System.out.println(String.format("%.2f", ob.switchCase(choice, arr)));
             else
                 System.out.println((int)ob.switchCase(choice, arr));
-        }
+        
+System.out.println("~");
+}
     }
 }
 // } Driver Code Ends
@@ -33,17 +35,15 @@ class Solution{
     static double switchCase(int choice, List<Double> arr){
         switch(choice)
         {
-        case 1:
-            {
-                double area=Math.PI*arr.get(0)*arr.get(0);
-                return area;
-            }
-            case 2:
+            case 1:
                 {
-                    double area=arr.get(0)*arr.get(1);
-                    return area;
+                    return Math.PI*arr.get(0)*arr.get(0);
                 }
-    }
-    return 0;
+                case 2:
+                    {
+                        return arr.get(0)*arr.get(1);
+                    }
+        }
+        return 0;
     }
 }
