@@ -13,7 +13,9 @@ class Main {
             Solution obj = new Solution();
             obj.printGfg(n);
             System.out.println();
-        }
+        
+System.out.println("~");
+}
     }
 }
 // } Driver Code Ends
@@ -22,12 +24,11 @@ class Main {
 class Solution {
 
     void printGfg(int N) {
-        if(N<1)
+        if(N==0)
         {
             return ;
         }
+        System.out.print("GFG"+" ");
         printGfg(N-1);
-        System.out.print("GFG ");
-        
     }
 }
