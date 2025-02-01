@@ -40,11 +40,11 @@ class Main {
 class Solution {
 
     public void printNos(int n) {
-        int i=1;
-        while(i<n+1)
-        {
-            System.out.print(i+" ");
-            i++;
-        }
+      if(n==0)
+      {
+          return ;
+      }
+      printNos(n-1);
+      System.out.print(n+" ");
     }
 }
