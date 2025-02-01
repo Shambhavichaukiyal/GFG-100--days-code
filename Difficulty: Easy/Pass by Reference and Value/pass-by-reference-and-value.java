@@ -17,7 +17,9 @@ class GFG {
             int ans[] = obj.passedBy(n, m);
 
             System.out.println(ans[0] + " " + ans[1]);
-        }
+        
+System.out.println("~");
+}
     }
 }
 
@@ -28,9 +30,7 @@ class GFG {
 
 class Solution {
     static int[] passedBy(int a, int b) {
-        int c[]=new int[2];
-        c[0]=a+1;
-        c[1]=b+2;
-        return c;
+        // code here
+         return new int[]{a+1,b+2};
     }
 }
