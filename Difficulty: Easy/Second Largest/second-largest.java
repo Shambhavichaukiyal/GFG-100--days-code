@@ -27,30 +27,18 @@ public class Main {
 // User function Template for Java
 
 class Solution {
-    public int getSecondLargest(int[] nums) {
-              if (nums.length < 2) {
-            return -1;
-        }
+    public int getSecondLargest(int[] arr) {
+        // Code Here
+        if (arr.length < 2) return -1;
+         int first = Integer.MIN_VALUE, second = Integer.MIN_VALUE;
 
-        PriorityQueue<Integer> minHeap = new PriorityQueue<>(2);
-
-        for (int num : nums) {
-            // Only add unique elements to the heap
-            if (!minHeap.contains(num)) {
-                minHeap.offer(num);
-
-                // Maintain heap size of 2 by removing the smallest element if necessary
-                if (minHeap.size() > 2) {
-                    minHeap.poll();
-                }
+        for (int num : arr) {
+            if (num > first) {
+                second = first;
+                first = num;
+            } else if (num > second && num != first) {
+                second = num;
             }
         }
-
-        // If we don't have two unique elements, return -1
-        if (minHeap.size() < 2) {
-            return -1;
-        }
-
-        return minHeap.poll();  // The root of the heap will be the second largest
-    }
-}
+        return second == Integer.MIN_VALUE ? -1 : second;
+    }}
