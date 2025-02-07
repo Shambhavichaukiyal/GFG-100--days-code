@@ -26,26 +26,26 @@ class Geeks {
 
 class Solution {
     int maxLen(int arr[]) {
-        int max=0;
+        // code here\\
         int sum=0;
-        HashMap<Integer,Integer> map=new HashMap<>();
+        int mx=0;
+        HashMap<Integer,Integer> map = new HashMap<>();
         for(int i=0;i<arr.length;i++)
         {
             sum+=arr[i];
             if(sum==0)
             {
-                max=i+1;
+                mx=Math.max(mx,i+1);
             }
             if(map.containsKey(sum))
             {
-                max=Math.max(max,i-map.get(sum));
+                mx=Math.max(mx,i-map.get(sum));
             }
             else
             {
                 map.put(sum,i);
             }
         }
-        return max;
+        return mx;
     }
 }
-   
