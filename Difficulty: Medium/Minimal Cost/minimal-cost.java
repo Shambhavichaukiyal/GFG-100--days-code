@@ -9,25 +9,34 @@ import java.util.*;
 // User function Template for Java
 
 class Solution {
+    private int dp[];
     public int minimizeCost(int k, int arr[]) {
-        int n = arr.length;
-        int[] dp = new int[n];
-        
-        Arrays.fill(dp, Integer.MAX_VALUE);
-        dp[0] = 0; 
-        for (int i = 0; i < n; i++) {
-            for (int j = 1; j <= k; j++) {
-                if (i + j < n) {
-                   
-                    dp[i + j] = Math.min(dp[i + j], dp[i] + Math.abs(arr[i] - arr[i + j]));
-                }
+        dp=new int[arr.length];
+        for(int i=0;i<arr.length;i++)
+        {
+            dp[i]=-1;
+        }
+        return help(k,arr,arr.length-1);
+    }
+        public int help(int k, int arr[], int n) {
+        if (n == 0) {
+            return 0;
+        }
+        if (dp[n] != -1) {
+            return dp[n];
+        }
+        int mn = Integer.MAX_VALUE;
+        for (int i = 1; i <= k; i++) { 
+            if (n - i >= 0) { 
+                int cs = help(k, arr, n - i) + Math.abs(arr[n] - arr[n - i]);
+                mn = Math.min(mn, cs);
             }
         }
-        
-        return dp[n - 1];
+        dp[n] = mn; 
+       
+        return dp[n];
     }
-    }
-
+}
 
 
 //{ Driver Code Starts.
@@ -56,6 +65,8 @@ class GFG {
             int res = obj.minimizeCost(k, arr);
 
             System.out.println(res);
+
+            System.out.println("~");
         }
     }
 }
