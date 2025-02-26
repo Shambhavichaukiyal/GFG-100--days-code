@@ -106,7 +106,9 @@ class GfG {
 			    ArrayList <Integer> res = ob.bottomView(root);
 			    for (Integer num : res) System.out.print (num + " ");
 		     	System.out.println();
-	        }
+	        
+System.out.println("~");
+}
 	}
 }
 
@@ -115,50 +117,41 @@ class GfG {
 
 
 //User function Template for Java
-
+ class Pair {
+        Node node;
+        int hd;
+        Pair(Node node, int hd) {
+            this.node = node;
+            this.hd = hd;
+        }
+    }
 
 class Solution
 {
-    static class Pair
-    {
-        int second;
-        Node node;
-        Pair(int second,Node node)
-        {
-            this.second=second;
-            this.node = node;
-        }
-        
-    }
+    //Function to return a list containing the bottom view of the given tree.
     public ArrayList <Integer> bottomView(Node root)
     {
-        ArrayList <Integer> result= new ArrayList<>();
+        ArrayList<Integer> res = new ArrayList<>();
+        if (root == null) {
+            return res;
+        }
+
         Queue<Pair> q = new LinkedList<>();
-        Map<Integer,Integer> map= new TreeMap<>();
-        if(root==null)
-        {
-            return result;
+        TreeMap<Integer, Integer> map = new TreeMap<>();
+        q.add(new Pair(root, 0));
+
+        while (!q.isEmpty()) {
+            Pair p = q.poll();
+            Node s = p.node;
+            int hd = p.hd;
+
+            map.put(hd, s.data);
+             if (s.left != null) q.add(new Pair(s.left, hd - 1));
+            if (s.right != null) q.add(new Pair(s.right, hd + 1));
         }
-        q.add(new Pair(0,root));
-        while(!q.isEmpty())
-        {
-            Pair p=q.poll();
-            int r=p.second;
-            Node n=p.node;
-            map.put(r,n.data);
-            if(n.left!=null)
-            {
-                q.add(new Pair(r-1,n.left));
-            }
-            if(n.right!=null)
-            {
-                q.add(new Pair(r+1,n.right));
-            }
-        }
-        for(Map.Entry<Integer,Integer>entry:map.entrySet())
-        {
-            result.add(entry.getValue());
-        }
-        return result;
+
+        res.addAll(map.values());
+        return res;
     }
 }
+    
