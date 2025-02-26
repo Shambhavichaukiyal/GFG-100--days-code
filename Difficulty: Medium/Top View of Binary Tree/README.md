@@ -1,22 +1,27 @@
-<h2><a href="https://www.geeksforgeeks.org/problems/top-view-of-binary-tree/1">Top View of Binary Tree</a></h2><h3>Difficulty Level : Difficulty: Medium</h3><hr><div class="problems_problem_content__Xm_eO"><p><span style="font-size: 18px;">Given below is a binary tree. The task is to print the top view of binary tree. Top view of a binary tree is the set of nodes visible when the tree is viewed from the top. For the given below tree</span></p>
-<p><span style="font-size: 18px;">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 1<br>&nbsp;&nbsp;&nbsp; /&nbsp;&nbsp;&nbsp;&nbsp; \<br>&nbsp;&nbsp; 2&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 3<br>&nbsp; /&nbsp; \&nbsp;&nbsp;&nbsp; /&nbsp;&nbsp; \<br>4&nbsp;&nbsp;&nbsp; 5&nbsp; 6&nbsp;&nbsp; 7</span></p>
-<p><span style="font-size: 18px;">Top view will be: 4 2 1 3 7<br><strong>Note: </strong>Return nodes from <strong>leftmost </strong>node to <strong>rightmost </strong>node. Also if 2 nodes are outside the shadow of the tree and are at same position then consider the left ones only(i.e. leftmost).&nbsp;<br>For ex -&nbsp;<strong>1 2 3 N 4 5 N 6 N 7 N 8 N 9 N N N N N</strong> will give&nbsp;<strong>8 2 1 3</strong> as answer. Here 8 and 9 are on the same position but 9 will get shadowed.</span></p>
-<p><span style="font-size: 18px;"><strong>Example 1:</strong></span></p>
-<pre><span style="font-size: 18px;"><strong>Input:
-</strong>&nbsp;     1
-  &nbsp;/&nbsp;&nbsp;&nbsp; \
-  2&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 3
-<strong>Output: </strong>2 1 3
+<h2><a href="https://www.geeksforgeeks.org/problems/top-view-of-binary-tree/1">Top View of Binary Tree</a></h2><h3>Difficulty Level : Difficulty: Medium</h3><hr><div class="problems_problem_content__Xm_eO"><p><span style="font-size: 14pt;">You are given a binary tree, and your task is to return its <strong>top view</strong>. The top view of a binary tree is the set of nodes visible when the tree is viewed from the top.</span></p>
+<p><span style="font-size: 14pt;"><strong>Note:&nbsp;</strong></span></p>
+<ul>
+<li><span style="font-size: 14pt;">Return the nodes from the leftmost node to the rightmost node.</span></li>
+<li><span style="font-size: 14pt;">If two nodes are at the same position (horizontal distance) and are outside the shadow of the tree, consider the leftmost node only.&nbsp;<br></span></li>
+</ul>
+<p><span style="font-size: 14pt;"><strong>Examples:</strong></span></p>
+<pre><span style="font-size: 14pt;"><strong>Input: </strong>root[] = [1, 2, 3] <br><img src="https://media.geeksforgeeks.org/img-practice/prod/addEditProblem/700490/Web/Other/blobid0_1733898095.png" width="249" height="219"> <br><strong>Output: </strong>[2, 1, 3]
 </span></pre>
-<p><span style="font-size: 18px;"><strong>Example 2:</strong></span></p>
-<pre><span style="font-size: 18px;"><strong>Input:
-</strong>&nbsp;      10
- &nbsp;&nbsp; /&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; \
-  20&nbsp; &nbsp;&nbsp;&nbsp; &nbsp; 30
- /&nbsp;&nbsp; \&nbsp;&nbsp;&nbsp;&nbsp;/&nbsp; &nbsp;&nbsp;\
-40&nbsp;&nbsp; 60  90&nbsp; &nbsp;&nbsp;100
-<strong>Output: </strong>40 20 10 30 100
-</span></pre>
-<p><strong><span style="font-size: 18px;">Your Task:</span></strong><br><span style="font-size: 18px;">Since this is a function problem. You don't have to take input. Just complete the function<strong>&nbsp;topView() </strong>that takes <strong>root node </strong>as parameter and returns a list of nodes visible from the top view from left to right.</span></p>
-<p><span style="font-size: 18px;"><strong>Expected Time Complexity:&nbsp;</strong>O(NlogN)<br><strong>Expected Auxiliary Space:&nbsp;</strong>O(N).</span></p>
-<p><span style="font-size: 18px;"><strong>Constraints:</strong><br>1 ≤&nbsp;N ≤&nbsp;10<sup>5</sup><br>1 ≤ Node Data ≤&nbsp;10<sup>5</sup></span><br>&nbsp;</p></div><p><span style=font-size:18px><strong>Company Tags : </strong><br><code>Paytm</code>&nbsp;<code>Ola Cabs</code>&nbsp;<code>Walmart</code>&nbsp;<br><p><span style=font-size:18px><strong>Topic Tags : </strong><br><code>Binary Search Tree</code>&nbsp;<code>Tree</code>&nbsp;<code>Data Structures</code>&nbsp;
+<pre><span style="font-size: 14pt;"><strong>Input:</strong> root[] = [10, 20, 30, 40, 60, 90, 100]<br><img src="https://media.geeksforgeeks.org/img-practice/prod/addEditProblem/700490/Web/Other/blobid1_1733898122.png" width="306" height="271"> <br><strong>Output: </strong>[40, 20, 10, 30, 100]<br><strong>Explaination: </strong>The root 10 is visible.
+On the left, 40 is the leftmost node and visible, followed by 20.
+On the right, 30 and 100 are visible. Thus, the top view is 40 20 10 30 100.</span></pre>
+<pre><span style="font-size: 14pt;"><strong>Input:</strong> root[] = [1, 2, 3, N, 4, N, N, N, 5, N, 6]
+       1
+     /   \
+    2     3
+     \   
+      4
+       \
+        5
+         \
+          6
+<strong>Output: </strong>[2, 1, 3, 6]<br><strong>Explaination: </strong>Node 1 is the root and visible.
+Node 2 is the left child and visible from the left side.
+Node 3 is the right child and visible from the right side.
+Nodes 4, 5, and 6 are vertically aligned, but only the lowest node 6 is visible from the top view. Thus, the top view is 2 1 3 6.</span></pre>
+<p><span style="font-size: 14pt;"><strong>Constraints:</strong><br>1 ≤ number of nodes ≤ 10<sup>5</sup><br>1 ≤ node-&gt;data ≤ 10<sup>5</sup></span></p></div><p><span style=font-size:18px><strong>Company Tags : </strong><br><code>Paytm</code>&nbsp;<code>Ola Cabs</code>&nbsp;<code>Walmart</code>&nbsp;<br><p><span style=font-size:18px><strong>Topic Tags : </strong><br><code>Binary Search Tree</code>&nbsp;<code>Tree</code>&nbsp;<code>Data Structures</code>&nbsp;
