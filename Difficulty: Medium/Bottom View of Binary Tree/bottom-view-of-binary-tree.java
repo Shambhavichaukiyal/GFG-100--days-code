@@ -117,41 +117,47 @@ System.out.println("~");
 
 
 //User function Template for Java
- class Pair {
-        Node node;
-        int hd;
-        Pair(Node node, int hd) {
-            this.node = node;
-            this.hd = hd;
-        }
-    }
 
+class Pair
+{
+    Node node;
+    int hd;
+    Pair(Node node,int hd)
+    {
+        this.node=node;
+        this.hd=hd;
+    }
+}
 class Solution
 {
     //Function to return a list containing the bottom view of the given tree.
     public ArrayList <Integer> bottomView(Node root)
     {
-        ArrayList<Integer> res = new ArrayList<>();
-        if (root == null) {
+        ArrayList <Integer>  res = new ArrayList<>();
+        if(root==null)
+        {
             return res;
         }
-
         Queue<Pair> q = new LinkedList<>();
-        TreeMap<Integer, Integer> map = new TreeMap<>();
-        q.add(new Pair(root, 0));
-
-        while (!q.isEmpty()) {
-            Pair p = q.poll();
-            Node s = p.node;
-            int hd = p.hd;
-
-            map.put(hd, s.data);
-             if (s.left != null) q.add(new Pair(s.left, hd - 1));
-            if (s.right != null) q.add(new Pair(s.right, hd + 1));
+        TreeMap<Integer,Integer> map= new TreeMap<>();
+        q.add(new Pair(root,0));
+        while(!q.isEmpty())
+        {
+            Pair p=q.poll();
+            Node node=p.node;
+            int hd=p.hd;
+            map.put(hd,node.data);
+            if(node.left!=null)
+            {
+                q.add(new Pair(node.left,hd-1));
+            }
+            if(node.right!=null)
+            {
+                q.add(new Pair(node.right,hd+1));
+            }
         }
-
         res.addAll(map.values());
         return res;
+        
     }
 }
-    
