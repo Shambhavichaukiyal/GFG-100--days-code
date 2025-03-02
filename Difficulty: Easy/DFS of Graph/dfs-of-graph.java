@@ -25,6 +25,8 @@ class GFG {
             ArrayList<Integer> ans = obj.dfsOfGraph(adj);
             for (int i = 0; i < ans.size(); i++) System.out.print(ans.get(i) + " ");
             System.out.println();
+
+            System.out.println("~");
         }
     }
 }
@@ -35,25 +37,31 @@ class GFG {
 class Solution {
     // Function to return a list containing the DFS traversal of the graph.
     public ArrayList<Integer> dfsOfGraph(ArrayList<ArrayList<Integer>> adj) {
-        ArrayList<Integer> dfs = new ArrayList<>();
-        int vis[]= new int[adj.size()];
-        vis[0]=1;
-        d(adj,dfs,0,vis);
-        return dfs;
-        
-    }
-    public void d(ArrayList<ArrayList<Integer>> adj , ArrayList<Integer> dfs,int node,int vis[])
-    {
-        dfs.add(node);
-        vis[node]=1;
-        for(int r:adj.get(node))
+        // Code here
+        ArrayList<Integer> res = new ArrayList<>();
+        int vis[]=new int[adj.size()];
+        Arrays.fill(vis,-1);
+        res.add(0);
+        for(int i=0;i<adj.size();i++)
         {
-            if(vis[r]==0)
+            if(vis[i]==-1)
             {
-                
-                d(adj,dfs,r,vis);
+                dfs(vis,res,adj,i);
             }
         }
+        return res;
+        
     }
-    
+    public static void dfs(int vis[],ArrayList<Integer> res,ArrayList<ArrayList<Integer>> adj,int node)
+    {
+       vis[node]=1; 
+       for(int j:adj.get(node))
+       {
+           if(vis[j]==-1)
+           {
+               res.add(j);
+               dfs(vis,res,adj,j);
+           }
+       }
+    }
 }
