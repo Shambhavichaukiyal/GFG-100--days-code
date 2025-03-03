@@ -50,7 +50,7 @@ class Solution {
         
         for (int i = 0; i < adj.size(); i++) {
             if (vis[i] == 0) {  // Check unvisited nodes
-                if (check(vis, adj, i)) {
+                if (check(vis, adj, i,-1)) {
                     return true;
                 }
             }
@@ -58,26 +58,20 @@ class Solution {
         return false;
     }
 
-    public static boolean check(int vis[], ArrayList<ArrayList<Integer>> adj, int node) {
-        Queue<Pair> q = new LinkedList<>();
-        q.add(new Pair(node, -1));  // Start BFS with the node
-        
-        vis[node] = 1;  // Mark node as visited
-        
-        while (!q.isEmpty()) {
-            Pair s = q.poll();
-            int ch = s.node;
-            int pa = s.parent;
-            
-            for (int i : adj.get(ch)) {
-                if (vis[i] == 0) {  // If node is unvisited
+    public static boolean check(int vis[], ArrayList<ArrayList<Integer>> adj, int node,int pa) {
+        vis[node] = 1;
+            for (int i : adj.get(node)) {
+                if (vis[i] == 0) {  
                     vis[i] = 1;
-                    q.add(new Pair(i, ch));
-                } else if (i != pa) {  // If visited and not parent, cycle detected
+                    if (check(vis,adj,i,node))
+                    {
+                        return true;
+                    }
+                } else if (i != pa) {  
                     return true;
                 }
             }
-        }
+        
         return false;
     }
 }
