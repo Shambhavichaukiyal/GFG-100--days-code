@@ -9,20 +9,25 @@ class GFG {
         int t = Integer.parseInt(br.readLine().trim());
 
         while (t-- > 0) {
-            String inputLine[] = br.readLine().trim().split(" ");
-            int n = Integer.parseInt(inputLine[0]);
+            String line1 = br.readLine();
+            String[] a1 = line1.trim().split("\\s+");
+            int n = a1.length;
+            int a[] = new int[n];
+            for (int i = 0; i < n; i++) {
+                a[i] = Integer.parseInt(a1[i]);
+            }
 
-            int start[] = new int[n];
-            int end[] = new int[n];
+            String line2 = br.readLine();
+            String[] a2 = line2.trim().split("\\s+");
+            n = a2.length;
+            int b[] = new int[n];
+            for (int i = 0; i < n; i++) {
+                b[i] = Integer.parseInt(a2[i]);
+            }
 
-            inputLine = br.readLine().trim().split(" ");
-            for (int i = 0; i < n; i++) start[i] = Integer.parseInt(inputLine[i]);
-
-            inputLine = br.readLine().trim().split(" ");
-            for (int i = 0; i < n; i++) end[i] = Integer.parseInt(inputLine[i]);
-
-            int ans = new Solution().maxMeetings(n, start, end);
+            int ans = new Solution().maxMeetings(a, b);
             System.out.println(ans);
+            System.out.println("~");
         }
     }
 }
@@ -33,30 +38,34 @@ class GFG {
 class Solution {
     // Function to find the maximum number of meetings that can
     // be performed in a meeting room.
-    public int maxMeetings(int n, int start[], int end[]) {
-        int meeting[][]=new int[n][2];
-        for(int i=0;i<n;i++)
-        {
-            meeting[i][0]=start[i];
-            meeting[i][1]=end[i];
+    public int maxMeetings(int start[], int end[]) {
+        // add your code here
+         int n=start.length;
+        if (n == 0) return 0;
+        int arr[][]= new int[start.length][2];
+        for (int i = 0; i < start.length; i++) {
+            arr[i][0] = start[i];
+            arr[i][1] = end[i];
         }
-        Arrays.sort(meeting,new Comparator<int[]>()
+        Arrays.sort(arr,new Comparator<>()
         {
             public int compare(int a[],int b[])
             {
                 return a[1]-b[1];
             }
         });
-        int freetime=meeting[0][1];
-        int count=1;
-        for(int i=1;i<n;i++)
+        int c=1;
+        int lastEndTime = arr[0][1];
+        for(int i=1;i<start.length;i++)
         {
-            if(meeting[i][0]>freetime)
+            if(lastEndTime<arr[i][0])
             {
-                count++;
-                freetime=meeting[i][1];
+                c++;
+                lastEndTime=arr[i][1];
             }
         }
-        return count;
+        return c;
     }
 }
+
+   
