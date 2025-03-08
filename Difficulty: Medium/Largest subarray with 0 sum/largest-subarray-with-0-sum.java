@@ -26,7 +26,6 @@ class Geeks {
 
 class Solution {
     int maxLen(int arr[]) {
-        // code here\\
         int sum=0;
         int mx=0;
         HashMap<Integer,Integer> map = new HashMap<>();
@@ -35,7 +34,7 @@ class Solution {
             sum+=arr[i];
             if(sum==0)
             {
-                mx=Math.max(mx,i+1);
+                mx=i+1;
             }
             if(map.containsKey(sum))
             {
