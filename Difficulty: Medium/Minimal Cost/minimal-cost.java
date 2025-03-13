@@ -6,19 +6,20 @@ import java.util.*;
 
 
 // } Driver Code Ends
+
 // User function Template for Java
 
 class Solution {
-    private int dp[];
     public int minimizeCost(int k, int arr[]) {
-        dp=new int[arr.length];
-        for(int i=0;i<arr.length;i++)
-        {
-            dp[i]=-1;
+       int n = arr.length;
+        int dp[] = new int[n];
+        for (int i = 0; i < n; i++) {
+            dp[i] = -1;
         }
-        return help(k,arr,arr.length-1);
+        return cost(dp, k, arr, n - 1);
     }
-        public int help(int k, int arr[], int n) {
+
+    public int cost(int dp[], int k, int arr[], int n) {
         if (n == 0) {
             return 0;
         }
@@ -26,14 +27,14 @@ class Solution {
             return dp[n];
         }
         int mn = Integer.MAX_VALUE;
-        for (int i = 1; i <= k; i++) { 
-            if (n - i >= 0) { 
-                int cs = help(k, arr, n - i) + Math.abs(arr[n] - arr[n - i]);
-                mn = Math.min(mn, cs);
+
+        for (int i = 1; i <= k; i++) {
+            if (n - i >= 0) {
+                int cs = cost(dp, k, arr, n - i) + Math.abs(arr[n] - arr[n - i]);
+                mn = Math.min(cs, mn);
             }
         }
-        dp[n] = mn; 
-       
+        dp[n] = mn;
         return dp[n];
     }
 }
