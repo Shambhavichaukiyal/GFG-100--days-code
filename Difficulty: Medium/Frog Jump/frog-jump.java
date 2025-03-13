@@ -46,37 +46,36 @@ public class Main {
 
 // } Driver Code Ends
 
+// User function Template for Java
 class Solution {
-    private int[] dp;
     int minCost(int[] height) {
-        //memo
-        int n=height.length;
-        dp=new int[n];
-       for(int i=0;i<n;i++){
+        // code here
+        int dp[]=new int[height.length+1];
+        for(int i=0;i<height.length;i++)
+        {
             dp[i]=-1;
         }
-        return help(height,n-1);
+     return   cost(dp,height,height.length-1);
     }
-    int help(int height[],int i)
+    int cost(int dp[],int height[],int n)
     {
-        if(i==0)
+        if(n==0)
         {
             return 0;
         }
-        if(dp[i]!=-1)
-        {
-            return dp[i];
+         if (n == 1) { 
+            return Math.abs(height[1] - height[0]);
         }
-        int one=help(height,i-1)+Math.abs(height[i] - height[i - 1]);
-        int two = Integer.MAX_VALUE; 
-        if(i>1)
-        {
-            two=help(height,i-2)+Math.abs(height[i] - height[i - 2]);  
+        if (dp[n] != -1) {  
+            return dp[n];
         }
-        dp[i]=Math.min(one,two);
-        return dp[i];
+        int a= Math.abs(height[n]-height[n-1])+cost(dp,height,n-1);
+        int b=Math.abs(height[n]-height[n-2])+cost(dp,height,n-2);
+        dp[n]=Math.min(a,b);
+        return dp[n];
     }
 }
+
 
 //{ Driver Code Starts.
 
