@@ -31,23 +31,36 @@ class Main {
 
 
 
+
+
 class Solution {
     // Function to calculate the number of subsets with a given sum
-    public int perfectSum(int[] nums, int target) {
-           int n=nums.length;
-        int[][] dp=new int[n+1][target+1];
-        for(int i=1;i<=target;i++)dp[0][i]=0;
-        for(int j=0;j<=n;j++)dp[j][0]=1;
-        for(int i=1;i<=n;i++){
-            for(int j=0;j<=target;j++){
-                if(nums[i-1]<=j){
-                    dp[i][j]=dp[i-1][j]+dp[i-1][j-nums[i-1]];
-                }
-                else{
-                    dp[i][j]=dp[i-1][j];
-                }
+    public int perfectSum(int[] arr, int target) {
+              int n = arr.length;
+        int[][] dp = new int[n + 1][target + 1];
+        for (int i = 0; i <= n; i++) {
+            for (int j = 0; j <= target; j++) {
+                dp[i][j] = -1;
             }
         }
-        return dp[n][target];
+        
+        int cnt = solve(n, arr, target, dp);
+        
+        int zeros = 0;
+        for (int num : arr) {
+            if (num == 0) zeros++;
+        }
+        
+        return (int) (cnt * Math.pow(2, zeros));
     }
-}
+     private int solve(int i, int[] arr, int target, int[][] dp) {
+        if (dp[i][target] != -1) return dp[i][target];
+        if (target == 0) return dp[i][target] = 1;
+        if (i == 0) return dp[i][target] = 0;
+        
+        if (arr[i - 1] == 0 || arr[i - 1] > target) {
+            return dp[i][target] = solve(i - 1, arr, target, dp);
+        } else {
+            return dp[i][target] = solve(i - 1, arr, target - arr[i - 1], dp) + solve(i - 1, arr, target, dp);
+        }
+    }}
