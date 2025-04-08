@@ -11,33 +11,37 @@ import java.util.*;
 
 class Solution {
     public int minimizeCost(int k, int arr[]) {
-       int n = arr.length;
-        int dp[] = new int[n];
-        for (int i = 0; i < n; i++) {
-            dp[i] = -1;
+         int n = arr.length;
+        int dp[]= new int[arr.length];
+        for(int i=0;i<n;i++)
+        {
+            dp[i]=-1;
         }
-        return cost(dp, k, arr, n - 1);
+       return min(k, arr, arr.length - 1,dp);
     }
 
-    public int cost(int dp[], int k, int arr[], int n) {
+    public int min(int k, int arr[], int n,int dp[]) {
         if (n == 0) {
             return 0;
         }
-        if (dp[n] != -1) {
-            return dp[n];
-        }
-        int mn = Integer.MAX_VALUE;
+if(dp[n]!=-1)
+{
+    return dp[n];
+}
+        int step = Integer.MAX_VALUE;
 
         for (int i = 1; i <= k; i++) {
-            if (n - i >= 0) {
-                int cs = cost(dp, k, arr, n - i) + Math.abs(arr[n] - arr[n - i]);
-                mn = Math.min(cs, mn);
+            if (n - i >= 0) { 
+                int cost = min(k, arr, n - i,dp) + Math.abs(arr[n] - arr[n - i]);
+                step = Math.min(cost, step);
             }
         }
-        dp[n] = mn;
-        return dp[n];
+
+        return dp[n]=step;
     }
 }
+
+
 
 
 //{ Driver Code Starts.
