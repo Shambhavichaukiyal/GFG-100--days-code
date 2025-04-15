@@ -24,16 +24,16 @@ class GFG {
 
 class Solution {
     static int evenlyDivides(int n) {
-        int m=n;
+        int x=n;
         int c=0;
         while(n>0)
         {
             int rem=n%10;
-            n=n/10;
-            if(rem!=0 && m%rem==0)
+            if(rem!=0 && x%rem==0)
             {
                 c++;
             }
+            n=n/10;
         }
         return c;
     }
