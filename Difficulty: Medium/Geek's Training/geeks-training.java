@@ -34,7 +34,7 @@ class Solution {
     public int maximumPoints(int arr[][]) {
         // code here
         int n=arr.length;
-        int dp[][]=new int[n][3];
+        int dp[][]= new int[arr.length][4];
         dp[0][0]=arr[0][0];
         dp[0][1]=arr[0][1];
         dp[0][2]=arr[0][2];
@@ -44,6 +44,5 @@ class Solution {
             dp[i][1] = arr[i][1] + Math.max(dp[i - 1][0], dp[i - 1][2]);
             dp[i][2] = arr[i][2] + Math.max(dp[i - 1][0], dp[i - 1][1]);
         }
-         return Math.max(dp[n - 1][0], Math.max(dp[n - 1][1], dp[n - 1][2]));
-    }
-}
+        return Math.max(dp[n - 1][0], Math.max(dp[n - 1][1], dp[n - 1][2]));
+    }}
