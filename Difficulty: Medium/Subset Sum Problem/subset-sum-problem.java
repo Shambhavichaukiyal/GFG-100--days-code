@@ -32,33 +32,31 @@ class Solution {
 
     static Boolean isSubsetSum(int arr[], int sum) {
         // code here
-        int n=arr.length;
+       int n=arr.length;
         
         Boolean dp[][]=new Boolean[n][sum+1];
         return subset(dp,arr,sum,n-1);
         
     }
-    public static boolean subset(Boolean dp[][],int arr[],int sum,int in)
+    public static boolean subset(Boolean dp[][],int arr[],int sum,int i)
     {
         if(sum==0)
         {
             return true;
         }
-        if(in<0)
+        if(i<0)
         {
             return false;
         }
-        
-        if(dp[in][sum]!=null)
+        if(dp[i][sum]!=null)
         {
-            return dp[in][sum];
+            return dp[i][sum];
         }
-        boolean nottake=subset(dp,arr,sum,in-1);
+        boolean nottake=subset(dp,arr,sum,i-1);
         boolean take=false;
-        if(sum>=arr[in])
+        if(sum>=arr[i])
         {
-            take=subset(dp,arr,sum-arr[in],in-1);
+            take=subset(dp,arr,sum-arr[i],i-1);
         }
-        return dp[in][sum]=take || nottake;
-    }
-}
+        return dp[i][sum]=nottake || take;
+    }}
