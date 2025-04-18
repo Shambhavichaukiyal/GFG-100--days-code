@@ -1,4 +1,4 @@
-<h2><a href="https://www.geeksforgeeks.org/problems/selection-sort/1?utm_source=youtube&utm_medium=collab_striver_ytdescription&utm_campaign=selection-sort">Selection Sort</a></h2><h3>Difficulty Level : Difficulty: Easy</h3><hr><div class="problems_problem_content__Xm_eO"><p><span style="font-size: 18px;">Given an array <strong>arr</strong>, use <strong>selection sort </strong>to sort arr[] in increasing order.</span></p>
+<h2><a href="https://www.geeksforgeeks.org/problems/selection-sort/1">Selection Sort</a></h2><h3>Difficulty Level : Difficulty: Easy</h3><hr><div class="problems_problem_content__Xm_eO"><p><span style="font-size: 18px;">Given an array <strong>arr</strong>, use <strong>selection sort </strong>to sort arr[] in increasing order.</span></p>
 <p><strong><span style="font-size: 18px;">Examples :</span></strong></p>
 <pre><span style="font-size: 18px;"><strong>Input: </strong>arr[] = [4, 1, 3, 9, 7]</span>
 <span style="font-size: 18px;"><strong>Output: </strong>[1, 3, 4, 7, 9]</span>
