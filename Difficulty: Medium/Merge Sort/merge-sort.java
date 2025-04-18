@@ -39,44 +39,44 @@ class Main {
 
 class Solution {
 
-    void mergeSort(int arr[], int low, int high) {
+    void mergeSort(int arr[], int l, int r) {
         // code here
-      
-         if(low>=high) {
-            return;
+        if(l>=r)
+        {
+            return ;
         }
-        
-        int mid = (low + high)/2;
-        
-        mergeSort(arr, low, mid);
-        mergeSort(arr, mid+1, high);
-        mergeArrays(low, mid, high, arr);
+        int mid=(l+r)/2;
+        mergeSort(arr,l,mid);
+        mergeSort(arr,mid+1,r);
+        mergearray(arr,l,mid,r);
     }
-    
-    void mergeArrays(int low, int mid, int high, int[] arr) {
-        int[] merge = new int[high - low + 1];
-        
-        int i=low, j=mid+1, k=0;
-        while(i<=mid && j<=high) {
-            if(arr[i] < arr[j]) {
-                merge[k++] = arr[i++];
-            } else {
-                merge[k++] = arr[j++];
+    public void mergearray(int arr[],int l,int mid,int h)
+    {
+        int[] merge = new int[h - l + 1];
+        int i=l;
+        int j=mid+1;
+        int k=0;
+        while(i<=mid && j<=h)
+        {
+            if(arr[i]>arr[j])
+            {
+                merge[k++]=arr[j++];
+            }
+            else
+            {
+                merge[k++]=arr[i++];
             }
         }
-        
-        while(i<=mid) {
-            merge[k++] = arr[i++];
-        }
-        
-        while(j<=high) {
-            merge[k++] = arr[j++];
-        }
-        
-        // Copy elements back
-        k = 0;
-        for(i=low; i<=high; i++) {
-            arr[i] = merge[k++];
-        }
+         while (i <= mid) {
+        merge[k++] = arr[i++];
     }
+     while (j <= h) {
+        merge[k++] = arr[j++];
+    }
+        for (int p = 0; p < merge.length; p++) {
+    arr[l + p] = merge[p];
 }
+
+}
+    }
+
