@@ -1,76 +1,97 @@
 //{ Driver Code Starts
+// Initial Template for Java
 import java.io.*;
-import java.lang.*;
 import java.util.*;
 
 class GFG {
-    public static void main(String[] args) throws IOException {
-        BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
-        int T = Integer.parseInt(br.readLine().trim());
-        while (T-- > 0) {
-            String[] s = br.readLine().trim().split(" ");
-            int V = Integer.parseInt(s[0]);
-            int E = Integer.parseInt(s[1]);
-            ArrayList<ArrayList<Integer>> adj = new ArrayList<>();
-            for (int i = 0; i < V; i++) adj.add(i, new ArrayList<Integer>());
+    public static void main(String[] args) {
+        Scanner sc = new Scanner(System.in);
+        int tc = sc.nextInt();
+        while (tc-- > 0) {
+            int V = sc.nextInt();
+            int E = sc.nextInt();
+            int[][] edges = new int[E][2];
             for (int i = 0; i < E; i++) {
-                String[] S = br.readLine().trim().split(" ");
-                int u = Integer.parseInt(S[0]);
-                int v = Integer.parseInt(S[1]);
-                adj.get(u).add(v);
-                adj.get(v).add(u);
+                edges[i][0] = sc.nextInt();
+                edges[i][1] = sc.nextInt();
             }
-            Solution obj = new Solution();
-            boolean ans = obj.isCycle(adj);
-            if (ans)
-                System.out.println("1");
-            else
-                System.out.println("0");
 
+            Solution obj = new Solution();
+            boolean ans = obj.isCycle(V, edges);
+            System.out.println(ans ? "true" : "false");
             System.out.println("~");
         }
+        sc.close();
     }
 }
+
 // } Driver Code Ends
 
-class Pair
-{
+
+class Solution {
+    class Pair {
     int node;
     int parent;
-    Pair(int node,int parent)
-    {
-        this.node=node;
-        this.parent=parent;
+    
+    Pair(int node, int parent) {
+        this.node = node;
+        this.parent = parent;
     }
 }
-class Solution {
-    // Function to detect cycle in an undirected graph.
-    public boolean isCycle(ArrayList<ArrayList<Integer>> adj) {
-         int vis[] = new int[adj.size()];
+    public boolean isCycle(int V, int[][] edges) {
+        // Code here
+        ArrayList<ArrayList<Integer>> adj = new ArrayList<>();
+        for(int i=0;i<V;i++)
+        {
+            adj.add(new ArrayList<>());
+        }
+        for(int edge[]:edges)
+        {
+            adj.get(edge[0]).add(edge[1]);
+            adj.get(edge[1]).add(edge[0]);
+
+        }
+        int vis[]= new int[V];
+        for(int i=0;i<V;i++)
+        {
+            vis[i]=-1;
+        }
         
-        for (int i = 0; i < adj.size(); i++) {
-            if (vis[i] == 0) {  // Check unvisited nodes
-                if (check(vis, adj, i,-1)) {
-                    return true;
-                }
+        for(int i=0;i<V;i++)
+        {
+            if(vis[i]==-1)
+            {
+               if (bfs(i, adj, vis))
+
+               {
+                   return true;
+               }
             }
         }
         return false;
+        
+        
     }
-
-    public static boolean check(int vis[], ArrayList<ArrayList<Integer>> adj, int node,int pa) {
+    private boolean bfs(int node, ArrayList<ArrayList<Integer>> adj, int[] vis) {
+        Queue<Pair> q = new LinkedList<>();
+        q.add(new Pair(node, -1));
         vis[node] = 1;
-            for (int i : adj.get(node)) {
-                if (vis[i] == 0) {  
-                    vis[i] = 1;
-                    if (check(vis,adj,i,node))
-                    {
-                        return true;
-                    }
-                } else if (i != pa) {  
-                    return true;
+        
+        while (!q.isEmpty()) {
+            Pair p = q.poll();
+            int curr = p.node;
+            int parent = p.parent;
+            
+            for (int neighbor : adj.get(curr)) {
+                if (vis[neighbor] == -1) {
+                    vis[neighbor] = 1;
+                    q.add(new Pair(neighbor, curr));
+                }
+                else if (neighbor != parent) {
+                    return true; // cycle found
                 }
             }
+        }
         
         return false;
     }
