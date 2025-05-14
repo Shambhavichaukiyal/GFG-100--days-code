@@ -36,28 +36,28 @@ public class Main {
 class Solution {
     // Function to find two elements in array
     ArrayList<Integer> findTwoElement(int arr[]) {
-        int n=arr.length;
-        long s1 = (long) n * (n + 1) / 2;
-        long s2 = (long) n * (n + 1) * (2 * n + 1) / 6;
+  ArrayList<Integer> res = new ArrayList<>();
+    int n = arr.length;
 
-        long su1 = 0, su2 = 0;
+    long expectedSum = (long) n * (n + 1) / 2;
+    long expectedSqSum = (long) n * (n + 1) * (2 * n + 1) / 6;
 
-        for (int num : arr) {
-            su1 += num;
-            su2 += (long) num * num; 
-        }
+    long actualSum = 0;
+    long actualSqSum = 0;
 
-        
-        long diff = su1 - s1;        
-        long sumSqDiff = su2 - s2;    
-        
-        long sum = sumSqDiff / diff;   
-
-        int b = (int) ((diff + sum) / 2);   
-        int a = (int) (sum - b);    
-        ArrayList<Integer> result = new ArrayList<>();
-        result.add(b);
-        result.add(a);
-        return result;
+    for (int val : arr) {
+        actualSum += val;
+        actualSqSum += (long) val * val;
     }
+
+    long diff = actualSum - expectedSum;               // duplicate - missing
+    long sumDiff = (actualSqSum - expectedSqSum) / diff;  // duplicate + missing
+
+    int duplicate = (int) ((diff + sumDiff) / 2);
+    int missing = (int) (duplicate - diff);
+
+    res.add(duplicate);
+    res.add(missing);
+    return res;
+}
 }
